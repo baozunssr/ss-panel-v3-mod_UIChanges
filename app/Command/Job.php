@@ -682,7 +682,7 @@ class Job
                 }
             }
 
-            if (strtotime($user->expire_in)+((int)Config::get('enable_account_expire_delete_days')*86400)<time() && $user->transfer_enable == 0  && $user->money <= (int)Config::get('user_delete_money')) {
+            if (strtotime($user->expire_in)+((int)Config::get('enable_account_expire_delete_days')*86400)<time() && $user->transfer_enable == 0  && $user->money < (int)Config::get('user_delete_money')) {
                 if (Config::get('enable_account_expire_delete')=='true') {
                     $subject = Config::get('appName')."-您的用户账户已经被删除了";
                     $to = $user->email;
@@ -705,7 +705,7 @@ class Job
 
 
 
-            if ((int)Config::get('enable_auto_clean_uncheck_days')!=0 && max($user->last_check_in_time, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_uncheck_days')*86400) < time() && $user->class == 0  && $user->money <= (int)Config::get('user_delete_money')) {
+            if ((int)Config::get('enable_auto_clean_uncheck_days')!=0 && max($user->last_check_in_time, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_uncheck_days')*86400) < time() && $user->class == 0  && $user->money < (int)Config::get('user_delete_money')) {
                 if (Config::get('enable_auto_clean_uncheck')=='true') {
                     $subject = Config::get('appName')."-您的用户账户已经被删除了";
                     $to = $user->email;
@@ -733,7 +733,7 @@ class Job
             }
 
 
-            if ((int)Config::get('enable_auto_clean_unused_days')!=0 && max($user->t, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_unused_days')*86400) < time() && $user->class == 0  && $user->money <= (int)Config::get('user_delete_money')) {
+            if ((int)Config::get('enable_auto_clean_unused_days')!=0 && max($user->t, strtotime($user->reg_date)) + ((int)Config::get('enable_auto_clean_unused_days')*86400) < time() && $user->class == 0  && $user->money < (int)Config::get('user_delete_money')) {
                 if (Config::get('enable_auto_clean_unused')=='true') {
                     $subject = Config::get('appName')."-您的用户账户已经被删除了";
                     $to = $user->email;
