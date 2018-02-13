@@ -444,7 +444,7 @@ class Job
 
         $adminUser = User::where("is_admin", "=", "1")->get();
 
-        $latest_content = file_get_contents("https://github.com/esdeathlove/ss-panel-v3-mod/raw/new_master/bootstrap.php");
+        $latest_content = file_get_contents("https://github.com/wxlost/ss-panel-v3-mod_UIChanges/raw/master/bootstrap.php");
         $newmd5 = md5($latest_content);
         $oldmd5 = md5(file_get_contents(BASE_PATH."/bootstrap.php"));
 
@@ -459,7 +459,7 @@ class Job
                         echo "Send mail to user: ".$user->id;
                         $subject = Config::get('appName')."-系统提示";
                         $to = $user->email;
-                        $text = "管理员您好，系统发现有了新版本，您可以到 <a href=\"https://github.com/esdeathlove/ss-panel-v3-mod/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97\">https://github.com/esdeathlove/ss-panel-v3-mod/wiki/%E6%9B%B4%E6%96%B0%E6%97%A5%E5%BF%97</a> 按照步骤进行升级。" ;
+                        $text = "管理员您好，系统发现有了新版本，您可以用命令 git pull 进行升级。" ;
                         try {
                             Mail::send($to, $subject, 'news/warn.tpl', [
                                 "user" => $user,"text" => $text
@@ -470,7 +470,7 @@ class Job
                         }
                     }
 
-                    Telegram::Send("姐姐姐姐，面板程序有更新了呢~看看你的邮箱吧~");
+                    //Telegram::Send("姐姐姐姐，面板程序有更新了呢~看看你的邮箱吧~");
 
                     $myfile = fopen(BASE_PATH."/storage/update.md5", "w+") or die("Unable to open file!");
                     $txt = "1";
