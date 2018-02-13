@@ -25,6 +25,8 @@ $System_Config['inviteNumback'] = '1';
 $System_Config['user_sign_in_default']='15';
 #是否允许用户注销账户
 $System_Config['enable_kill']='true';
+#用户到期后,余额大于XX不会被删除
+$System_Config['user_delete_money']='5';
 //------------------------------
 //$System_Config['version'] = '<a href="https://www.zhaoj.in">Glzjin</a> mod-2016042210000';
 

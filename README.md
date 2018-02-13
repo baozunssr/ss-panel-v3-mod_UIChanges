@@ -14,6 +14,7 @@
 -------------------
 ```
 git clone https://github.com/wxlost/ss-panel-v3-mod_UIChanges.git tmp && mv tmp/.git . && rm -rf tmp && git reset --hard
+cp config/.config.php.example config/.config.php
 ```
 ```
 php composer.phar install
@@ -38,7 +39,7 @@ php -n xcat createAdmin
 
 3、如果您有任何问题，概不接受任何质疑、Wiki製作、Issuse...等等
 
-4、国标素材：/public/images/prefix/国旗
+4、(本功能被注销,请自行解封)国标素材：/public/images/prefix/国旗
 
    放置位置：/public/images/prefix
    

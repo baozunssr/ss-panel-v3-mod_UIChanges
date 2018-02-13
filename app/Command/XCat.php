@@ -28,8 +28,10 @@ class XCat
     public function boot()
     {
         switch ($this->argv[1]) {
+            case("sendtest"):
+            return $this->OnePvpsendtest();
             case("install"):
-                    return $this->install();
+                return $this->install();
             case("createAdmin"):
                 return $this->createAdmin();
             case("resetTraffic"):
@@ -84,6 +86,30 @@ class XCat
         echo "Memo";
     }
 
+    public function OnePvpsendtest()
+    {
+        echo "发送测试邮件(0为全体用户)↓";
+        fwrite(STDOUT, "\n请输入用户ID:");
+        $OnePvp_Id = trim(fgets(STDIN));
+        //echo "\n待操作的ID为: $OnePvp_Id";
+        
+        if ($OnePvp_Id == 0) {
+            echo "即将给 全体用户 发信(可能会同时发信数量太多进入拒收模式)";
+        } else {
+            echo "即将给ID: $OnePvp_Id 发信";
+        }
+
+        fwrite(STDOUT, "\n按下[Y]确认确认发信..... ");
+        $y = trim(fgets(STDIN));
+        if (strtolower($y) == "y") {
+            echo "\n开始发信\n";
+            return OnePvp::sendAllDailyMail($OnePvp_Id);
+            return true;
+        }
+        echo "\n取消...\n";
+        return false;
+    }
+
     public function cleanRelayRule()
     {
         $rules = Relay::all();
@@ -106,7 +132,7 @@ class XCat
 
     public function install()
     {
-        echo "x cat will install ss-panel v3...../n";
+        echo "x cat will install ss-panel v3.....\n";
     }
 
     public function initdownload()
@@ -119,19 +145,19 @@ class XCat
     {
         $this->initQQWry();
         $this->initdownload();
-        echo "add admin/ 创建管理员帐号.....";
+        echo "\nadd admin/ 创建管理员帐号.....↓";
         // ask for input
-        fwrite(STDOUT, "Enter your email/输入管理员邮箱: ");
+        fwrite(STDOUT, "\nEnter your email/输入管理员邮箱: \n");
         // get input
         $email = trim(fgets(STDIN));
         // write input back
-        fwrite(STDOUT, "Enter password for: $email / 为 $email 添加密码 ");
+        fwrite(STDOUT, "\nEnter password for: $email / 为 $email 添加密码 ");
         $passwd = trim(fgets(STDIN));
-        echo "Email: $email, Password: $passwd! ";
-        fwrite(STDOUT, "Press [Y] to create admin..... 按下[Y]确认来确认创建管理员账户..... ");
+        echo "\nEmail: $email, Password: $passwd! ";
+        fwrite(STDOUT, "\nPress [Y] to create admin..... 按下[Y]确认来确认创建管理员账户..... ");
         $y = trim(fgets(STDIN));
         if (strtolower($y) == "y") {
-            echo "start create admin account";
+            echo "\nstart create admin account\n";
             // create admin user
             // do reg user
             $user = new User();
@@ -167,13 +193,13 @@ class XCat
 
 
             if ($user->save()) {
-                echo "Successful/添加成功!";
+                echo "\nSuccessful/添加成功!";
                 return true;
             }
-            echo "添加失败";
+            echo "\n添加失败";
             return false;
         }
-        echo "cancel";
+        echo "\ncancel";
         return false;
     }
 
@@ -188,7 +214,7 @@ class XCat
             echo $e->getMessage();
             return false;
         }
-        return "reset traffic successful";
+        return "\nreset traffic successful";
     }
 
 
@@ -196,13 +222,13 @@ class XCat
     {
         $bot = new \TelegramBot\Api\BotApi(Config::get('telegram_token'));
         if ($bot->setWebhook(Config::get('baseUrl')."/telegram_callback?token=".Config::get('telegram_request_token')) == 1) {
-            echo("设置成功！");
+            echo("\n设置成功！");
         }
     }
 
     public function initQQWry()
     {
-        echo("downloading....");
+        echo("\ndownloading....");
         $copywrite = file_get_contents("https://github.com/esdeathlove/qqwry-download/raw/master/copywrite.rar");
         $newmd5 = md5($copywrite);
         file_put_contents(BASE_PATH."/storage/qqwry.md5", $newmd5);
@@ -221,7 +247,7 @@ class XCat
                 fwrite($fp, $qqwry);
                 fclose($fp);
             }
-            echo("finish....");
+            echo("\nfinish....");
         }
     }
 }
