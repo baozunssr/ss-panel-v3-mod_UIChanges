@@ -46,7 +46,8 @@
 					  	<nav>
 							<ul>
                                 <li><a href="#1">简介</a></li>
-					            <li><a href="/user">用户中心</a></li>
+								<li><a href="/user">用户中心</a></li>
+								<li><a href="#4">联系</a></li>
 								<li><a href="#5">下载</a></li>
                         </ul>
 						</nav>
@@ -84,7 +85,8 @@
 									<p>我们不提供面对面联系功能</p>
 									<p>如有需求请点击下方给我们发邮件</p>
                                     <li>
-                                      <a target="_blank" href="mailto:&#97;&#100;&#109;&#105;&#110;&#64;&#111;&#110;&#101;&#104;&#101;&#114;&#111;&#46;&#120;&#121;&#122;?subject=一拳超人 用户提问&body=<一拳超人>管理员 您好!%0d%0a我有问题向您咨询:" class="icon fa-send-o">
+									<!-- 邮箱地址转码请用(ascii转Unicode) http://tool.chinaz.com/Tools/Unicode.aspx -->
+                                      <a target="_blank" href="mailto:&#110;&#101;&#119;&#115;&#64;&#111;&#110;&#101;&#112;&#118;&#112;&#46;&#99;&#111;&#109;?subject=一拳超人 用户提问&body=<一拳超人>管理员 您好!%0d%0a我有问题向您咨询:" class="icon fa-send-o">
                                       <span class="label">帮助邮件</span>
                                       </a>
                                     </li>
